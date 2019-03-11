@@ -21,7 +21,7 @@ with open(file_name, 'r') as file: # open file
         # #loop to get lines in text
         the_list= []
         for line in text:
-            line = line.lower()
+            line = line.lower() # Sadip suggested I make everything lowercase to be able to count words
             #print(line)
            # line = re.sub(r'()|()')
             """
@@ -30,7 +30,10 @@ with open(file_name, 'r') as file: # open file
             line = re.sub(r'[!^_]', " ", line)
             """
             line = re.sub("[^a-zA-Z']+", " ", line)
-            the_list = the_list + line.split()
+            #line = re.findall("\w+", line)
+            #line = re.sub("'(.+)", " ", line)
+            #line = re.sub(" (')+", " ", line)
+            the_list = the_list + line.split() #adds lines in a list
         print(the_list)
         for word in the_list:
             if word in counting_dict:
@@ -38,10 +41,9 @@ with open(file_name, 'r') as file: # open file
             else:
                 counting_dict[word] = 1
         print(counting_dict)
-        the_keys = sorted(counting_dict.keys())
+        the_keys = sorted(counting_dict.keys()) #sorts keys in the dictionary
         for key in the_keys:
-            the_keys= sorted(counting_dict.keys())
             the_value= counting_dict[key]
-            the_string = key + ":" + str(the_value) + "\n"
+            the_string = key + ":" + str(the_value) + "\n" #adds key and it's value in string
             #print(the_string)
-            file_output.write(the_string)
+            file_output.write(the_string) #outputs the string in a file
